@@ -1,12 +1,3 @@
-# Biza.io Note
-
-This repository is used as a fork of the upstream standards as a checkpointing method for populating Biza.io's CDR Redocs specification.
-
-You can browse the live Redocs version of the Standards at: [https://bizaio.github.io/dsb-standards/](https://bizaio.github.io/dsb-standards/).
-
-You can browse the source code of the Redocs version of the Standards at: [https://github.com/bizaio/dsb-standards](https://github.com/bizaio/dsb-standards).
-
-
 # Consumer Data Right Standards
 
 This repository contains the binding API Standards and Information Security profile created in response to the [Consumer Data Right](https://treasury.gov.au/consumer-data-right "Treasury's Consumer Data Right webpage") legislation and the subsequent regulatory rules.  The purpose of the Consumer Data Right regime is to give Australians greater control over their data and is intended to apply sector by sector across the whole Australian economy.
