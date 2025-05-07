@@ -1,7 +1,2 @@
 ## CORS
-Cross-origin resource sharing (CORS) must be enabled (ie. `Access-Control-Allow-Origin` set to "*") for the following end points:
-
-- Get Status
-- Get Outages
-- Get Products
-- Get Product Detail
+Cross-origin resource sharing (CORS) protections must be disabled (i.e. _Access-Control-Allow-Origin_ set to `*`) for all unauthenticated endpoints unless specifically stated otherwise in these standards or in a normative reference.

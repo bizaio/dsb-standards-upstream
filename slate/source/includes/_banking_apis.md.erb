@@ -1,23 +1,20 @@
-
 # Banking APIs
 
+```diff
+Banking endpoints updated to incorporate Decision 338. See release notes for more detail.
++ Get Products v4
++ Get Product Detail v6
++ Get Account Detail v4
+```
 
 This specification defines the APIs for Data Holders exposing Banking endpoints.
 
-<br>
 <table>
-<tr><td><a href='./includes/swagger/cds_banking.json'>Banking Swagger (JSON)</a></td></tr>
-<tr><td><a href='./includes/swagger/cds_banking.yaml'>Banking Swagger (YAML)</a></td></tr>
+<tr><td><a href='./includes/swagger/cds_banking.json'>Banking OpenAPI Specification (JSON)</a></td></tr>
+<tr><td><a href='./includes/swagger/cds_banking.yaml'>Banking OpenAPI Specification (YAML)</a></td></tr>
 </table>
-
-```diff
-Below are the changes to the Banking APIs section of the
-standards.
-
-Corrected GetProducts response reference from `ResponseBankingProductList` to `ResponseBankingProductListV2`
-```
-
 
 <%= partial "includes/cds_banking.md" %>
 <%= partial "includes/banking/_product_categories.md" %>
 <%= partial "includes/banking/_product_components.md" %>
+<%= partial "includes/banking/_npp_services.md" %>

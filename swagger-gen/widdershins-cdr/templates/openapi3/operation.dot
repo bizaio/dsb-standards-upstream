@@ -1,10 +1,16 @@
-## {{= data.operationUniqueName}}
+{{ data.cds_operationUniqueSlug = data.operationUniqueSlug.replace(/[\s\W-]+/g, ' ').trim().replace(/[\s\W-]+/g, '-'); }}
+{{ data.cds_uniqueAnchorPrefix = data.title_prefix + '_' + data.cds_operationUniqueSlug; }}
+
+<h2 id="{{= data.cds_uniqueAnchorPrefix }}">{{= data.operationUniqueName}}</h2>
+<p id="{{= data.cds_operationUniqueSlug}}" class="orig-anchor"></p>
 
 {{? data.operation.operationId}}
-<a id="opId{{=data.operation.operationId}}"></a>
 {{?}}
 
 {{ data.methodUpper = data.method.verb.toUpperCase(); }}
+{{ data.orig_baseUrl = data.orig_baseUrl || data.baseUrl; }}
+{{ data.baseUrl = (data.operation.servers && data.operation.servers[0].url) || data.orig_baseUrl; }}
+{{ data.host = data.baseUrl.replace(/^https?:\/\//, '').split('/', 1)[0].toLowerCase(); }}
 {{ data.url = data.utils.slashes(data.baseUrl + data.method.path); }}
 {{ data.parameters = data.operation.parameters; }}
 {{ data.enums = []; }}
@@ -36,10 +42,11 @@
 {{= data.utils.getBodyParameterExamples(data) }}
 {{?}}
 
-###Endpoint Version
+<h3 id="{{= data.cds_uniqueAnchorPrefix }}_endpoint-version">Endpoint Version</h3>
 |   |  |
 |---|--|
 |Version|**{{? data.operation["x-version"]}}{{= data.operation["x-version"]}}{{??}}Versioning is not supported for this endpoint{{?}}**
+{{? data.operation["x-version-notes"]}}|Version&nbsp;Notes|{{= data.operation["x-version-notes"]}}{{?}}
 
 {{? data.parameters && data.parameters.length }}
 {{#def.parameters}}
@@ -51,8 +58,10 @@
 
 {{ data.security = data.operation.security ? data.operation.security : data.api.security; }}
   {{? data.utils.hasExAuthentication(data) }}
-    {{? data.utils.hasExRestrictedAuthenticationAccessOnly(data) }}
-      {{#def.restricted_access_authentication_ex}}
+    {{? data.utils.hasExRestrictedAuthenticationAEMO(data) }}
+      {{#def.restricted_access_authentication_AEMO_ex}}
+    {{?? data.utils.hasExRestrictedAuthenticationREGISTER(data) }}
+      {{#def.restricted_access_authentication_REGISTER_ex}}
     {{??}}
       {{#def.authentication_ex}}
     {{?}}

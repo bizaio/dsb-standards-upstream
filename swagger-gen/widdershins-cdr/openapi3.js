@@ -181,7 +181,11 @@ function getParameters(data) {
                 let schemaName = pSchema["x-widdershins-oldRef"].replace('#/components/schemas/','');
                 param.safeType = '['+schemaName+'](#schema'+data.title_prefix+schemaName.toLowerCase()+')';
             }
-            if (param.refName) param.safeType = '['+param.refName+'](#schema'+data.title_prefix+param.refName.toLowerCase()+')';
+            
+            // Using refName to refer to a schema doesnt appear to work correctly. This breaks the statement above.
+            //if (param.refName) {
+            //  param.safeType = '['+param.refName+'](#schema'+data.title_prefix+param.refName.toLowerCase()+')';
+            //}
         }
         if (pSchema) {
             param.exampleValues.object = param.example || param.default || common.getSample(pSchema,data.options,{skipReadOnly:true},data.api);
@@ -240,12 +244,27 @@ function getParameters(data) {
         }
         templateVars[stupidity(param.name)] = param.exampleValues.object;
 
+        // Denote custom types for endpoint parameters E.g., DateString or PositiveInteger
         if (typeof param['x-cds-type'] === 'string') {
           param.cdrType = '[' + param['x-cds-type'] +'](#common-field-types)';
         }
 
+        // Denote conditional parameters
         if (typeof param['x-conditional'] === 'boolean') {
           param.cdrConditional = param['x-conditional'];
+        }
+
+        // Denote custom parameter types (based on standard properties)
+        if (param.schema && param.schema.enum) {
+          param.cdrType = '[Enum](#common-field-types)';
+        }
+        if (param.schema && param.schema.type === 'boolean') {
+          param.cdrType = '[Boolean](#common-field-types)';
+        }
+        
+        // Link to referenced schemas
+        if (param.schema && param.schema['x-widdershins-oldRef'] && param.safeType) {
+          param.cdrType = param.safeType;
         }
     }
 
@@ -322,17 +341,17 @@ function getBodyParameterExamples(data) {
     }
     if (common.doContentType(data.consumes, 'json')) {
         content += '```json\n';
-        content += safejson(obj,null,2) + '\n';
+        content += safejson(obj,null,2).replace(/\n+$/, '') + '\n';
         content += '```\n\n';
     }
     if (common.doContentType(data.consumes, 'yaml')) {
         content += '```yaml\n';
-        content += yaml.safeDump(obj) + '\n';
+        content += yaml.safeDump(obj).replace(/\n+$/, '') + '\n';
         content += '```\n\n';
     }
     if (common.doContentType(data.consumes, 'form')) {
         content += '```yaml\n';
-        content += yaml.safeDump(obj) + '\n';
+        content += yaml.safeDump(obj).replace(/\n+$/, '') + '\n';
         content += '```\n\n';
     }
     if (common.doContentType(data.consumes, 'xml') && (typeof obj === 'object')) {
@@ -496,12 +515,12 @@ function getResponseExamples(data) {
         }
         if (common.doContentType(example.cta, 'json')) {
             content += '```json\n';
-            content += safejson(example.value, null, 2) + '\n';
+            content += safejson(example.value, null, 2).replace(/\n+$/, '') + '\n';
             content += '```\n\n';
         }
         if (common.doContentType(example.cta, 'yaml')) {
             content += '```yaml\n';
-            content += yaml.safeDump(example.value) + '\n';
+            content += yaml.safeDump(example.value).replace(/\n+$/, '') + '\n';
             content += '```\n\n';
         }
         let xmlObj = example.value;
@@ -533,6 +552,13 @@ function getResponseHeaders(data) {
                 entry.required = header.required;
                 entry.schema = header.schema || {};
                 entry.type = entry.schema.type;
+                
+                // Denote custom response header types. E.g., ASCIIString or ExternalRef
+                entry['x-cds-type'] = header['x-cds-type'];
+                if (entry['x-cds-type']) {
+                  entry.cdrType = '[' + entry['x-cds-type'] +'](#common-field-types)';
+                }
+                
                 entry.format = entry.schema.format;
                 headers.push(entry);
             }
@@ -541,8 +567,17 @@ function getResponseHeaders(data) {
     return headers;
 }
 
-function hasExRestrictedAuthenticationAccessOnly(data) {
-  if (data.operation['x-restricted-access'] && data.operation['x-restricted-access'] == true ) {
+function hasExRestrictedAuthenticationAEMO(data) {
+  if (data.operation['x-restricted-access'] && data.operation['x-restricted-access'] == "AEMO") {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function hasExRestrictedAuthenticationREGISTER(data) {
+  if (data.operation['x-restricted-access'] && data.operation['x-restricted-access'] == "REGISTER") {
     return true;
   }
   else {
@@ -552,6 +587,9 @@ function hasExRestrictedAuthenticationAccessOnly(data) {
 
 function hasExAuthentication(data) {
   if (data.operation['x-scopes'] && data.operation['x-scopes'].length) {
+    return true;
+  }
+  else if (data.operation['x-restricted-access']) {
     return true;
   }
   else {
@@ -692,7 +730,8 @@ function convertInner(api, options, callback) {
     data.utils.getAuthenticationStr = getAuthenticationStr;
     data.utils.hasExAuthentication = hasExAuthentication;
     data.utils.getExAuthenticationStr = getExAuthenticationStr;
-    data.utils.hasExRestrictedAuthenticationAccessOnly = hasExRestrictedAuthenticationAccessOnly;
+    data.utils.hasExRestrictedAuthenticationAEMO = hasExRestrictedAuthenticationAEMO;
+    data.utils.hasExRestrictedAuthenticationREGISTER = hasExRestrictedAuthenticationREGISTER;
     data.utils.join = function(s) {
         return s.split('\r').join('').split('\n').join(' ').trim();
     };

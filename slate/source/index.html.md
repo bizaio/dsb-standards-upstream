@@ -8,10 +8,12 @@ language_tabs:
   - diff: Version Delta
 
 toc_footers:
-  - <a href='https://consumerdatastandards.gov.au/'>Consumer Data Standards Home</a>
+  - <a href='https://dsb.gov.au/'>Data Standards Body Home</a>
+  - <a href='https://cx.dsb.gov.au/'>CX Guidelines</a>
   - <a href='https://cdr-support.zendesk.com/'>CDR Support Portal</a>
   - <a href='https://github.com/ConsumerDataStandardsAustralia/standards'>CDR Standards on GitHub</a>
   - <a href='https://github.com/ConsumerDataStandardsAustralia/standards-maintenance'>CDR Maintenance on GitHub</a>
+  - <a href='https://consumerdatastandardsaustralia.github.io/standards-testing/latest'>Test Documentation</a>
 
 includes:
   - intro
@@ -34,10 +36,13 @@ includes:
   - admin
   - separator
   - secondary_responsibility
+  - energy_apis_sdh
+  - separator
+  - additional
   - separator
   - known-issues
   - changelog
-  - archives
+  - footer
 
 search: true
 ---

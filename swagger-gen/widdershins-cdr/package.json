@@ -38,7 +38,7 @@
     "httpsnippet": "1.16.5",
     "jgexml": "latest",
     "js-yaml": "^3.6.1",
-    "node-fetch": "^2.6.5",
+    "node-fetch": "^2.6.6",
     "oas-resolver": "^1.0.1",
     "oas-schema-walker": "^1.1.0",
     "openapi-sampler": "^1.1.0",
@@ -51,7 +51,7 @@
   "deprecated": false,
   "description": "OpenAPI/ Swagger / AsyncAPI / Semoasa definition to slate / shins compatible markdown",
   "devDependencies": {
-    "mocha": "^5.0.5",
+    "mocha": "^10.2.0",
     "node-readfiles": "^0.2.0"
   },
   "directories": {

@@ -3,6 +3,7 @@
 @import 'variables';
 @import 'icon-font';
 @import 'extends/tabs';
+@import 'extends/datepicker';
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -235,8 +236,8 @@ html, body {
   .schema-list li.active-parent span.toggle,
   .schema-list li.active-parent,
   .schema-list li.active-parent:before {
-    background-color: #00A9CE;
-    color: #fff;
+    background-color: $nav-active-bg;
+    color: $nav-active-text;
   }
 
   .schema-list {
@@ -438,6 +439,13 @@ html, body {
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
   }
+  
+  a.schema-anchor {
+    display: block;
+    margin-top: -5.1em;
+    margin-bottom: 5.1em;
+    padding-top: 1em;
+  }
 
   // h2s right after h1s should bump right up
   // against the h1s.
@@ -632,16 +640,107 @@ html, body {
     @extend %code-font;
     padding-top: 2em;
     padding-bottom: 2em;
-    padding: 2em $main-padding;
+    padding: 1.5em $main-padding;
   }
 
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      padding: $code-annotation-padding 2em;
+      /* padding: $code-annotation-padding 2em; */
+      padding: 0.6em 2em 0.8em 2em;
       color: #eee;
     }
   }
+
+  .tooltip{
+    position: relative;
+    display: inline;
+  }
+  .tooltip:after{
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: -120px;
+    opacity: 0;
+    content: attr(data-text); /* might also use attr(title) */
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: normal;
+    height: auto;
+    min-width: 100px;
+    padding: 5px 8px;
+    z-index: 999;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    max-width: 25em;
+    word-wrap: break-word;
+    background: rgba(0,0,0,0.85);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  .tooltip:before {
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    left: 50%;
+    bottom: 0px;
+    opacity: 0;
+    content: "";
+    border-style: solid;
+    border-width: 6px 6px 0 6px;
+    border-color: rgba(0,0,0,0.85) transparent transparent transparent;
+  }
+  .tooltip:after, .tooltip:before {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  .tooltip:hover { cursor: help; }
+  .tooltip:hover:after{ visibility: visible; opacity: 1; bottom: 28px; }
+  .tooltip:hover:before{ visibility: visible; opacity: 1; bottom: 22px; }
+
+  /* tips on bottom */
+  .tooltip.bottom:after { bottom: auto; top: 0; }
+  .tooltip.bottom:hover:after { top: 28px; }
+  .tooltip.bottom:before {
+    border-width: 0 5px 8.7px 5px;
+    border-color: transparent transparent rgba(0,0,0,0.85) transparent;
+    top: 0px
+  }
+  .tooltip.bottom:hover:before { top: 20px; }
+  /* tips on the right */
+  .tooltip.right:after { left: 100%; bottom: -45%; }
+  .tooltip.right:hover:after { left: 110%; bottom: -45%; }
+  .tooltip.right:before {
+    border-width: 5px 10px 5px 0;
+    border-color: transparent rgba(0,0,0,0.85) transparent transparent;
+    left: 90%;
+    bottom: 2%;
+  }
+  .tooltip.right:hover:before { left: 100%; bottom: 2%; }
+  /* tips on the left */
+  .tooltip.left:after { left: auto; right: 100%; bottom: -45%; }
+  .tooltip.left:hover:after { right: 110%; bottom: -45%; }
+  .tooltip.left:before {
+    border-width: 5px 0 5px 10px;
+    border-color: transparent transparent transparent rgba(0,0,0,0.85);
+    left: auto;
+    right: 90%;
+    bottom: 2%;
+  }
+  .tooltip.left:hover:before { right: 100%; bottom: 2%; }
+
 }
 
 .content {
@@ -835,4 +934,28 @@ content: '<<< END DISCUSS?';
       background: green;
     }
   }
+}
+
+// staging#305, staging#371
+body .tab-json code, body .tab-examples code, body .tab-diff code, body .highlight > code {
+    /* background-color: blue; */
+    word-break: break-word;
+    text-wrap: wrap;
+    white-space: break-spaces;
+}
+
+// staging#338
+// override schema-toc style for custom submenu items
+.content h3.schema-toc[data-cds-menu="h3"] {
+  margin-top: 2.5em;
+  border-top: 0;
+  font-size: 15px;
+}
+
+// staging#222
+// This style adjusts the positioning of the original anchors that were retained to avoid breaking key links.
+// Details replicate a.schema-anchor (from staging#311) which made the anchor nav keep the anchor title in view.
+p.orig-anchor {
+    margin: -5.1em 0 5.1em 0;
+    padding-top: 0.1em;
 }

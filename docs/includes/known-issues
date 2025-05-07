@@ -1,4 +1,6 @@
-<h1 id='known-issues'>Known Issues</h1>
+<h1 id='known-issues'>Known Issues</h1><pre class="highlight diff tab-diff"><code>Version 1.34.1 amendment:
+Updated Known Issues detail for the Non-Bank Lending Candidate Standards
+</code></pre>
 <p>There are certain aspects of the standards that are actively under review. These known issues are articulated in the following table.</p>
 
 <table><thead>
@@ -8,23 +10,54 @@
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left">Banking and Common swagger is combined</td>
-<td style="text-align: left">Common entity definitions to be split out into a separate swagger which can be leveraged by Banking, Energy and Register APIs. This will create a separate Banking APIs swagger that references the common swagger specification.</td>
+<td style="text-align: left">Inconsistencies in Telco Candidate Standards</td>
+<td style="text-align: left"><ul><li>The Get Telco Products endpoint schema references an array of <em>plans</em>, which should be <em>products</em>.</li><li>Transaction endpoints reference a <em>serviceIds</em> (plural) property described as an &#39;Array list&#39;, but with a Type as &#39;string&#39;.</li><li>Redundant <em>service</em> object in Telco Usage list endpoints.</li><li>Redundant <em>balance</em> object in Telco Balance list endpoints.</li><li>Telco Usage list endpoints should have pagination links.</li><li>Some mandatory fields are not specified with valid &#39;required&#39; statements, and some are incorrectly specified with default values.</li></ul></td>
 </tr>
 <tr>
-<td style="text-align: left">Register APIs use local version of common definitions</td>
-<td style="text-align: left">The Register APIs use a locally defined version of common schema definitions such as <code>ResponseErrorList</code> for error responses. These need to be updated to reference common swagger specifications inherited by the Common Swagger spec.</td>
+<td style="text-align: left">Non-Bank Lending Candidate Standards</td>
+<td style="text-align: left">The Candidate Standards were updated in v1.34.1 to align to Decisions affecting the Banking endpoints that they have been based on, as of v1.34.0. Further details are in the Version Delta comments of the Candidate Standards.</td>
+</tr>
+</tbody></table>
+<h2 id='future-improvements'>Future improvements</h2>
+<p>The following improvements will be incorporated into future versions of the Standards</p>
+<h3 id='standardise-register-api-error-codes'>Standardise Register API Error Codes</h3>
+<p>Future versions of the CDR Register API error codes are to be aligned to the <a href="#error-codes">Standards high-level error codes</a> as follows:</p>
+
+<table><thead>
+<tr>
+<th>API</th>
+<th>Updated Error Codes</th>
+<th>New Error Codes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#cdr-register-api_get-data-holder-brands">Get Data Holder Brands</a></td>
+<td>400: <br>Missing Required Header / Invalid Header / Invalid Version / Invalid Field</td>
+<td>404: <br>Invalid Industry</td>
 </tr>
 <tr>
-<td style="text-align: left">Register APIs don&#39;t specify standardised CDR error codes</td>
-<td style="text-align: left">The Register APIs need to be changed to support common CDR error codes to be consistent with the rest of the data standards.</td>
+<td><a href="#cdr-register-api_get-software-statement-assertion-ssa">Get Software Statement Assertion (SSA)</a></td>
+<td>400: <br>Missing Required Header / Invalid Header / Invalid Version / Invalid Field <br><br>403: <br>The ADR or the ADR&#39;s Software Product is not active <br><br>404: <br>Invalid Industry / Invalid Brand Id / Invalid Software Product Id</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: left">Register APIs use different field type definitions</td>
-<td style="text-align: left">The Register APIs define their own field types that are not consistent with the <a href="#common-field-types">Common Field Types</a> defined in the data standards. As part of porting the Register standards across to the primary data standards, the field types need to be re-aligned to use the common field type definitions. For example, <code>string (data-time)</code> should be changed to <code>DataTime</code> and <code>integer(int32)</code> should be changed to <code>PositiveInteger</code>.</td>
+<td><a href="#cdr-register-api_get-data-holder-statuses">Get Data Holder Statuses</a></td>
+<td>400: <br>Missing Required Header / Invalid Header / Invalid Version / Invalid Field</td>
+<td>404: <br>Invalid Industry</td>
 </tr>
 <tr>
-<td style="text-align: left">DCR and Register Swagger naming conventions</td>
-<td style="text-align: left">The DCR and Register naming conventions are not consistent with the broader data standards. Field names should be standardised to camelCase and snake_case inline with the data standards</td>
+<td><a href="#cdr-register-api_get-software-products-statuses">Get Software Products Statuses</a></td>
+<td>400: <br>Missing Required Header / Invalid Header / Invalid Version / Invalid Field</td>
+<td>404: <br>Invalid Industry</td>
+</tr>
+<tr>
+<td><a href="#cdr-register-api_get-data-recipients-statuses">Get Data Recipients Statuses</a></td>
+<td>400: <br>Missing Required Header / Invalid Header / Invalid Version / Invalid Field</td>
+<td>404: <br>Invalid Industry</td>
+</tr>
+<tr>
+<td><a href="#cdr-register-api_get-data-recipients">Get Data Recipients</a></td>
+<td>400: <br>Missing Required Header / Invalid Header / Invalid Version / Invalid Field</td>
+<td>404: <br>Invalid Industry</td>
 </tr>
 </tbody></table>

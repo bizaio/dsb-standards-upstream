@@ -25,10 +25,12 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.2.7)
+    eventmachine (1.2.7-x64-mingw32)
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.1.5)
     ffi (1.10.0)
+    ffi (1.10.0-x64-mingw32)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -88,10 +90,12 @@ GEM
     middleman-syntax (3.0.0)
       middleman-core (>= 3.2)
       rouge (~> 2.0)
-    mini_portile2 (2.6.1)
+    mini_portile2 (2.8.2)
     minitest (5.11.3)
-    nokogiri (1.12.5)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.13.10)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.13.10-x64-mingw32)
       racc (~> 1.4)
     padrino-helpers (0.13.3.4)
       i18n (~> 0.6, >= 0.6.7)
@@ -101,7 +105,7 @@ GEM
       activesupport (>= 3.1)
     parallel (1.13.0)
     public_suffix (4.0.6)
-    racc (1.5.2)
+    racc (1.7.1)
     rack (2.0.6)
     rack-livereload (0.3.17)
       rack
@@ -119,13 +123,15 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   middleman (~> 4.2.1)
@@ -133,9 +139,10 @@ DEPENDENCIES
   middleman-livereload (~> 3.4.6)
   middleman-sprockets (~> 4.1.0)
   middleman-syntax (~> 3.0.0)
-  nokogiri (~> 1.12.5)
+  nokogiri (~> 1.13.10)
   redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
+  wdm (>= 0.1.0)
 
 RUBY VERSION
    ruby 2.6.3p62

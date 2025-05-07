@@ -1,39 +1,48 @@
-<h2 id='register-data-recipient-oauth-client'>Register Data Recipient oAuth Client</h2>
-<p><a id="opIdPostDataRecipientRegistration"></a></p>
+<!-- Endpoint tag group description -->
+
+<!-- Data Holder Client Registration endpoints -->
+
+<h2 id="cdr-dynamic-client-registration-api_register-data-recipient-oauth-client">Register Data Recipient oAuth Client</h2>
+
+<p id="register-data-recipient-oauth-client" class="orig-anchor"></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://data.holder.com.au/register/register</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">data.holder.com.au</span>
+<pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">https://mtls.dh.example.com/cds-au/v1/register</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">mtls.dh.example.com</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/jwt</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="s1">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/jwt'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span>
-
 <span class="p">};</span>
 
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://data.holder.com.au/register/register'</span><span class="p">,</span>
-  <span class="na">method</span><span class="p">:</span> <span class="s1">'post'</span><span class="p">,</span>
-
-  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
-  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mtls.dh.example.com/cds-au/v1/register'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">inputBody</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 <p><code>POST /register</code></p>
 
-<p>Register a client using a CDR Register issued Software Statement Assertion.</p>
+<p>Register a client using a CDR Register issued Software Statement Assertion. </p>
+
+<p>This endpoint does not require <a href="#cors">CORS</a>.</p>
 
 <blockquote>
 <p>Body parameter</p>
 </blockquote>
-<h3 id='endpoint-version'>Endpoint Version</h3>
+<pre class="highlight yaml tab-yaml"><code><span class="s">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span>
+</code></pre>
+<h3 id="cdr-dynamic-client-registration-api_register-data-recipient-oauth-client_endpoint-version">Endpoint Version</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -46,7 +55,7 @@
 </tr>
 </tbody></table>
 
-<h3 id="register-data-recipient-oauth-client-parameters">Parameters</h3>
+<h3 id="cdr-dynamic-client-registration-api_register-data-recipient-oauth-client_parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -54,14 +63,16 @@
 <th>In</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>body</td>
 <td>body</td>
-<td><a href="#schemacdr-dynamic-client-registration-apiclientregistrationrequest">ClientRegistrationRequest</a></td>
+<td><a href="#schemacdr-dynamic-client-registration-apiclientregistrationrequestv1">ClientRegistrationRequestV1</a></td>
 <td>mandatory</td>
+<td></td>
 <td>The registration request JWT to be used to register with a Data Holder.</td>
 </tr>
 </tbody></table>
@@ -72,38 +83,43 @@
 <p>201 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35a5a70b-5b8d-41f4-9cbd-96cfbc15c58a"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571808167</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cfefa98-7d4a-4bcb-95da-47063b84d410"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574398833</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Software"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A mock software product"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344F0E809-BDBE-4F8E-BD30-5E6C3CB78D7B"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"legal_entity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Pty Ltd."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect2"</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect2"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/sector_identifier.json"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/logos/logo1.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/tos.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/policy.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/jwks"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/revocation"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/sector_identifier.json"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/logos/logo1.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/tos.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/policy.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/jwks"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/revocation"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_key_jwt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"grant_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"client_credentials"</span><span class="w">
+    </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_token"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"response_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"code id_token"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"application_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A256GCM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A128CBC-HS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"request_object_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_statement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"740C368F-ECF9-4D29-A2EA-0514A66B0CDE"</span><span class="p">,</span><span class="w">
@@ -111,7 +127,7 @@
   </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid profile bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="register-data-recipient-oauth-client-responses">Responses</h3>
+<h3 id="cdr-dynamic-client-registration-api_register-data-recipient-oauth-client_responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -136,40 +152,41 @@
 </tbody></table>
 
 <p><aside class="success">
-This operation does not require authentication
+This operation does not require authentication.
 </aside></p>
-<h2 id='get-oauth-client-registration'>Get oAuth Client Registration</h2>
-<p><a id="opIdGetClientRegistration"></a></p>
+
+<h2 id="cdr-dynamic-client-registration-api_get-oauth-client-registration">Get oAuth Client Registration</h2>
+
+<p id="get-oauth-client-registration" class="orig-anchor"></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://data.holder.com.au/register/register/{ClientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">data.holder.com.au</span>
+<pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">https://mtls.dh.example.com/cds-au/v1/register/{ClientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">mtls.dh.example.com</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">string</span>
-
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'string'</span>
-
 <span class="p">};</span>
 
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://data.holder.com.au/register/register/{ClientId}'</span><span class="p">,</span>
-  <span class="na">method</span><span class="p">:</span> <span class="s1">'get'</span><span class="p">,</span>
-
-  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
-  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mtls.dh.example.com/cds-au/v1/register/{ClientId}'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 <p><code>GET /register/{ClientId}</code></p>
 
 <p>Get a Client Registration for a given Client ID.</p>
-<h3 id='endpoint-version-2'>Endpoint Version</h3>
+
+<h3 id="cdr-dynamic-client-registration-api_get-oauth-client-registration_endpoint-version">Endpoint Version</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -182,7 +199,7 @@ This operation does not require authentication
 </tr>
 </tbody></table>
 
-<h3 id="get-oauth-client-registration-parameters">Parameters</h3>
+<h3 id="cdr-dynamic-client-registration-api_get-oauth-client-registration_parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -190,6 +207,7 @@ This operation does not require authentication
 <th>In</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -198,14 +216,16 @@ This operation does not require authentication
 <td>path</td>
 <td>string</td>
 <td>mandatory</td>
-<td>The client ID issued by the target Data Holder</td>
+<td></td>
+<td>The client ID issued by the target Data Holder.</td>
 </tr>
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>string</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
 <td>mandatory</td>
-<td>An Authorisation Token as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a></td>
+<td></td>
+<td>An Authorisation Token as per <strong><a href="#nref-RFC6750">[RFC6750]</a></strong>.</td>
 </tr>
 </tbody></table>
 
@@ -215,38 +235,43 @@ This operation does not require authentication
 <p>200 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35a5a70b-5b8d-41f4-9cbd-96cfbc15c58a"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571808167</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cfefa98-7d4a-4bcb-95da-47063b84d410"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574398833</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Software"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A mock software product"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344F0E809-BDBE-4F8E-BD30-5E6C3CB78D7B"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"legal_entity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Pty Ltd."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect2"</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect2"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/sector_identifier.json"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/logos/logo1.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/tos.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/policy.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/jwks"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/revocation"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/sector_identifier.json"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/logos/logo1.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/tos.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/policy.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/jwks"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/revocation"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_key_jwt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"grant_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"client_credentials"</span><span class="w">
+    </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_token"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"response_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"code id_token"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"application_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A256GCM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A128CBC-HS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"request_object_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_statement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"740C368F-ECF9-4D29-A2EA-0514A66B0CDE"</span><span class="p">,</span><span class="w">
@@ -254,7 +279,7 @@ This operation does not require authentication
   </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid profile bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="get-oauth-client-registration-responses">Responses</h3>
+<h3 id="cdr-dynamic-client-registration-api_get-oauth-client-registration_responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -283,58 +308,61 @@ This operation does not require authentication
 <td>None</td>
 </tr>
 </tbody></table>
-<h3 id='response-headers'>Response Headers</h3>
+
+<h3 id="cdr-dynamic-client-registration-api_get-oauth-client-registration_response-headers">Response Headers</h3>
+
 <table><thead>
 <tr>
 <th>Status</th>
 <th>Header</th>
 <th>Type</th>
-<th>Format</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>401</td>
 <td>WWW-Authenticate</td>
-<td>string</td>
-<td></td>
-<td>The Response Header Field as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a></td>
+<td><a href="#common-field-types">ExternalRef</a></td>
+<td>optional</td>
+<td>The Response Header Field as per <strong><a href="#nref-RFC6750">[RFC6750]</a></strong>.</td>
 </tr>
 </tbody></table>
 
 <p><aside class="notice">
 To perform this operation, you must be authenticated and authorised with the following scopes:
-<a href="#authorisation-scopes">cdr:registration</a>
+<a href="#authorisation-scopes">cdr:registration.</a>
 </aside></p>
-<h2 id='update-data-recipient-registration'>Update Data Recipient Registration</h2>
-<p><a id="opIdPutDataRecipientRegistration"></a></p>
+
+<h2 id="cdr-dynamic-client-registration-api_update-data-recipient-registration">Update Data Recipient Registration</h2>
+
+<p id="update-data-recipient-registration" class="orig-anchor"></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://data.holder.com.au/register/register/{ClientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">data.holder.com.au</span>
+<pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">https://mtls.dh.example.com/cds-au/v1/register/{ClientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">mtls.dh.example.com</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/jwt</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">string</span>
-
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">inputBody</span> <span class="o">=</span> <span class="s1">'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Content-Type'</span><span class="p">:</span><span class="s1">'application/jwt'</span><span class="p">,</span>
   <span class="s1">'Accept'</span><span class="p">:</span><span class="s1">'application/json'</span><span class="p">,</span>
   <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'string'</span>
-
 <span class="p">};</span>
 
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://data.holder.com.au/register/register/{ClientId}'</span><span class="p">,</span>
-  <span class="na">method</span><span class="p">:</span> <span class="s1">'put'</span><span class="p">,</span>
-
-  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
-  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mtls.dh.example.com/cds-au/v1/register/{ClientId}'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'PUT'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">inputBody</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 <p><code>PUT /register/{ClientId}</code></p>
 
@@ -343,7 +371,10 @@ To perform this operation, you must be authenticated and authorised with the fol
 <blockquote>
 <p>Body parameter</p>
 </blockquote>
-<h3 id='endpoint-version-3'>Endpoint Version</h3>
+<pre class="highlight yaml tab-yaml"><code><span class="s">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</span>
+</code></pre>
+<h3 id="cdr-dynamic-client-registration-api_update-data-recipient-registration_endpoint-version">Endpoint Version</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -356,7 +387,7 @@ To perform this operation, you must be authenticated and authorised with the fol
 </tr>
 </tbody></table>
 
-<h3 id="update-data-recipient-registration-parameters">Parameters</h3>
+<h3 id="cdr-dynamic-client-registration-api_update-data-recipient-registration_parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -364,6 +395,7 @@ To perform this operation, you must be authenticated and authorised with the fol
 <th>In</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -372,20 +404,23 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td>path</td>
 <td>string</td>
 <td>mandatory</td>
-<td>The client ID issued by the target Data Holder</td>
+<td></td>
+<td>The client ID issued by the target Data Holder.</td>
 </tr>
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>string</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
 <td>mandatory</td>
-<td>An Authorisation Token as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a></td>
+<td></td>
+<td>An Authorisation Token as per <strong><a href="#nref-RFC6750">[RFC6750]</a></strong>.</td>
 </tr>
 <tr>
 <td>body</td>
 <td>body</td>
-<td><a href="#schemacdr-dynamic-client-registration-apiclientregistrationrequest">ClientRegistrationRequest</a></td>
+<td><a href="#schemacdr-dynamic-client-registration-apiclientregistrationrequestv1">ClientRegistrationRequestV1</a></td>
 <td>mandatory</td>
+<td></td>
 <td>The registration request JWT to be used to register with a Data Holder.</td>
 </tr>
 </tbody></table>
@@ -396,38 +431,43 @@ To perform this operation, you must be authenticated and authorised with the fol
 <p>200 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35a5a70b-5b8d-41f4-9cbd-96cfbc15c58a"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571808167</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cfefa98-7d4a-4bcb-95da-47063b84d410"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574398833</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Software"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A mock software product"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344F0E809-BDBE-4F8E-BD30-5E6C3CB78D7B"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"legal_entity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Pty Ltd."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect2"</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect2"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/sector_identifier.json"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/logos/logo1.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/tos.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/policy.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/jwks"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/revocation"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/sector_identifier.json"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/logos/logo1.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/tos.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/policy.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/jwks"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/revocation"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_key_jwt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"grant_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"client_credentials"</span><span class="w">
+    </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_token"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"response_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"code id_token"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"application_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A256GCM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A128CBC-HS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"request_object_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_statement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"740C368F-ECF9-4D29-A2EA-0514A66B0CDE"</span><span class="p">,</span><span class="w">
@@ -435,7 +475,7 @@ To perform this operation, you must be authenticated and authorised with the fol
   </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid profile bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="update-data-recipient-registration-responses">Responses</h3>
+<h3 id="cdr-dynamic-client-registration-api_update-data-recipient-registration_responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -470,60 +510,62 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td>None</td>
 </tr>
 </tbody></table>
-<h3 id='response-headers-2'>Response Headers</h3>
+
+<h3 id="cdr-dynamic-client-registration-api_update-data-recipient-registration_response-headers">Response Headers</h3>
+
 <table><thead>
 <tr>
 <th>Status</th>
 <th>Header</th>
 <th>Type</th>
-<th>Format</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>401</td>
 <td>WWW-Authenticate</td>
-<td>string</td>
-<td></td>
-<td>The Response Header Field as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a></td>
+<td><a href="#common-field-types">ExternalRef</a></td>
+<td>optional</td>
+<td>The Response Header Field as per <strong><a href="#nref-RFC6750">[RFC6750]</a></strong>.</td>
 </tr>
 </tbody></table>
 
 <p><aside class="notice">
 To perform this operation, you must be authenticated and authorised with the following scopes:
-<a href="#authorisation-scopes">cdr:registration</a>
+<a href="#authorisation-scopes">cdr:registration.</a>
 </aside></p>
-<h2 id='delete-data-recipient-oauth-client-registration'>Delete Data Recipient oAuth Client Registration</h2>
-<p><a id="opIdDeleteDataRecipientRegistration"></a></p>
+
+<h2 id="cdr-dynamic-client-registration-api_delete-data-recipient-oauth-client-registration">Delete Data Recipient oAuth Client Registration</h2>
+
+<p id="delete-data-recipient-oauth-client-registration" class="orig-anchor"></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://data.holder.com.au/register/register/{ClientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">data.holder.com.au</span>
-
-Authorization: string
-
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">https://mtls.dh.example.com/cds-au/v1/register/{ClientId}</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">mtls.dh.example.com</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">string</span>
+</code></pre><pre class="highlight javascript tab-javascript--nodejs"><code><span class="kr">const</span> <span class="nx">fetch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'node-fetch'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">'Authorization'</span><span class="p">:</span><span class="s1">'string'</span>
-
 <span class="p">};</span>
 
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://data.holder.com.au/register/register/{ClientId}'</span><span class="p">,</span>
-  <span class="na">method</span><span class="p">:</span> <span class="s1">'delete'</span><span class="p">,</span>
-
-  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span><span class="p">,</span>
-  <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mtls.dh.example.com/cds-au/v1/register/{ClientId}'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s1">'DELETE'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="nx">headers</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 <p><code>DELETE /register/{ClientId}</code></p>
 
 <p>Delete a Client Registration for a given Client ID.</p>
-<h3 id='endpoint-version-4'>Endpoint Version</h3>
+
+<h3 id="cdr-dynamic-client-registration-api_delete-data-recipient-oauth-client-registration_endpoint-version">Endpoint Version</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -536,7 +578,7 @@ Authorization: string
 </tr>
 </tbody></table>
 
-<h3 id="delete-data-recipient-oauth-client-registration-parameters">Parameters</h3>
+<h3 id="cdr-dynamic-client-registration-api_delete-data-recipient-oauth-client-registration_parameters">Parameters</h3>
 
 <table><thead>
 <tr>
@@ -544,6 +586,7 @@ Authorization: string
 <th>In</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -552,18 +595,20 @@ Authorization: string
 <td>path</td>
 <td>string</td>
 <td>mandatory</td>
-<td>The client ID issued by the target Data Holder</td>
+<td></td>
+<td>The client ID issued by the target Data Holder.</td>
 </tr>
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>string</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
 <td>mandatory</td>
-<td>An Authorisation Token as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a></td>
+<td></td>
+<td>An Authorisation Token as per <strong><a href="#nref-RFC6750">[RFC6750]</a></strong>.</td>
 </tr>
 </tbody></table>
 
-<h3 id="delete-data-recipient-oauth-client-registration-responses">Responses</h3>
+<h3 id="cdr-dynamic-client-registration-api_delete-data-recipient-oauth-client-registration_responses">Responses</h3>
 
 <table><thead>
 <tr>
@@ -598,47 +643,54 @@ Authorization: string
 <td>None</td>
 </tr>
 </tbody></table>
-<h3 id='response-headers-3'>Response Headers</h3>
+
+<h3 id="cdr-dynamic-client-registration-api_delete-data-recipient-oauth-client-registration_response-headers">Response Headers</h3>
+
 <table><thead>
 <tr>
 <th>Status</th>
 <th>Header</th>
 <th>Type</th>
-<th>Format</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>401</td>
 <td>WWW-Authenticate</td>
-<td>string</td>
-<td></td>
-<td>The Response Header Field as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a></td>
+<td><a href="#common-field-types">ExternalRef</a></td>
+<td>optional</td>
+<td>The Response Header Field as per <strong><a href="#nref-RFC6750">[RFC6750]</a></strong>.</td>
 </tr>
 </tbody></table>
 
 <p><aside class="notice">
 To perform this operation, you must be authenticated and authorised with the following scopes:
-<a href="#authorisation-scopes">cdr:registration</a>
+<a href="#authorisation-scopes">cdr:registration.</a>
 </aside></p>
 
 <h2 class="schema-heading" id="cdr-dynamic-client-registration-api-schemas">Schemas</h2>
 
-<p><a class="schema-link" id="cdr-dynamic-client-registration-api-schemas"></a></p>
+<h3 class="schema-toc" id="cdr-dynamic-client-registration-api_schemas_tocSclientregistrationrequestv1">ClientRegistrationRequestV1</h3>
 
-<h3 class="schema-toc" id="tocSclientregistrationrequest">ClientRegistrationRequest</h3>
+<p id="tocSclientregistrationrequestv1" class="orig-anchor"></p>
 
-<p><a id="schemacdr-dynamic-client-registration-apiclientregistrationrequest"></a></p>
+<p>
+  <a id="cdr-dynamic-client-registration-api_schema-base_clientregistrationrequest"></a>
+  <a class="schema-anchor" id="schemacdr-dynamic-client-registration-apiclientregistrationrequestv1"></a>
+</p>
 <pre class="highlight json tab-json"><code><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span><span class="w">
-
 </span></code></pre>
-<p><em>The registration request JWT to be used to register with a Data Holder.</em></p>
-<h3 id='properties'>Properties</h3>
+<p><em>The registration request JWT to be used to register with a Data Holder. The schema of the payload section of the decoded string(JWT) is defined in <a href="#cdr-dynamic-client-registration-api_schemas_tocSclientregistration">ClientRegistration</a>.</em></p>
+
+<h3 id="cdr-dynamic-client-registration-api_clientregistrationrequestv1_properties">Properties</h3>
+
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -646,59 +698,72 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td><em>anonymous</em></td>
 <td>string(JWT)</td>
 <td>mandatory</td>
-<td>The registration request JWT to be used to register with a Data Holder.</td>
+<td></td>
+<td>The registration request JWT to be used to register with a Data Holder. The schema of the payload section of the decoded string(JWT) is defined in <a href="#cdr-dynamic-client-registration-api_schemas_tocSclientregistration">ClientRegistration</a>.</td>
 </tr>
 </tbody></table>
 
-<h3 class="schema-toc" id="tocSregistrationproperties">RegistrationProperties</h3>
+<h3 class="schema-toc" id="cdr-dynamic-client-registration-api_schemas_tocSregistrationproperties">RegistrationProperties</h3>
 
-<p><a id="schemacdr-dynamic-client-registration-apiregistrationproperties"></a></p>
+<p id="tocSregistrationproperties" class="orig-anchor"></p>
+
+<p>
+  <a id="cdr-dynamic-client-registration-api_schema-base_registrationproperties"></a>
+  <a class="schema-anchor" id="schemacdr-dynamic-client-registration-apiregistrationproperties"></a>
+</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35a5a70b-5b8d-41f4-9cbd-96cfbc15c58a"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571808167</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cfefa98-7d4a-4bcb-95da-47063b84d410"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574398833</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Software"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A mock software product"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344F0E809-BDBE-4F8E-BD30-5E6C3CB78D7B"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"legal_entity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Pty Ltd."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect2"</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect2"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/sector_identifier.json"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/logos/logo1.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/tos.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/policy.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/jwks"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/revocation"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/sector_identifier.json"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/logos/logo1.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/tos.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/policy.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/jwks"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/revocation"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_key_jwt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"grant_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"client_credentials"</span><span class="w">
+    </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_token"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"response_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"code id_token"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"application_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A256GCM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A128CBC-HS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"request_object_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_statement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"740C368F-ECF9-4D29-A2EA-0514A66B0CDE"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_roles"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data-recipient-software-product"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid profile bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="cdr-dynamic-client-registration-api_registrationproperties_properties">Properties</h3>
 
-</span></code></pre><h3 id='properties-2'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -706,184 +771,237 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td>client_id</td>
 <td>string</td>
 <td>mandatory</td>
-<td>Data Holder issued client identifier string</td>
+<td></td>
+<td>Data Holder issued client identifier string.</td>
 </tr>
 <tr>
 <td>client_id_issued_at</td>
-<td>integer(int32)</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
 <td>optional</td>
-<td>Time at which the client identifier was issued expressed as seconds since 1970-01-01T00:00:00Z as measured in UTC</td>
+<td></td>
+<td>Time at which the client identifier was issued expressed as seconds since 1970-01-01T00:00:00Z as measured in UTC.</td>
 </tr>
 <tr>
 <td>client_name</td>
 <td>string</td>
 <td>mandatory</td>
-<td>Human-readable string name of the software product to be presented to the end-user during authorization</td>
+<td></td>
+<td>Human-readable string name of the software product to be presented to the end-user during authorization.</td>
 </tr>
 <tr>
 <td>client_description</td>
 <td>string</td>
 <td>mandatory</td>
-<td>Human-readable string name of the software product description to be presented to the end user during authorization</td>
+<td></td>
+<td>Human-readable string name of the software product description to be presented to the end user during authorization.</td>
 </tr>
 <tr>
 <td>client_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>mandatory</td>
-<td>URL string of a web page providing information about the client</td>
+<td></td>
+<td>URL string of a web page providing information about the client.</td>
 </tr>
 <tr>
 <td>legal_entity_id</td>
 <td>string</td>
 <td>optional</td>
-<td>A unique identifier string assigned by the CDR Register that identifies the Accredited Data Recipient Legal Entity</td>
+<td></td>
+<td>A unique identifier string assigned by the CDR Register that identifies the Accredited Data Recipient Legal Entity.</td>
 </tr>
 <tr>
 <td>legal_entity_name</td>
 <td>string</td>
 <td>optional</td>
-<td>Human-readable string name of the Accredited Data Recipient Legal Entity</td>
+<td></td>
+<td>Human-readable string name of the Accredited Data Recipient Legal Entity.</td>
 </tr>
 <tr>
 <td>org_id</td>
 <td>string</td>
 <td>mandatory</td>
-<td>A unique identifier string assigned by the CDR Register that identifies the Accredited Data Recipient Brand</td>
+<td></td>
+<td>A unique identifier string assigned by the CDR Register that identifies the Accredited Data Recipient Brand.</td>
 </tr>
 <tr>
 <td>org_name</td>
 <td>string</td>
 <td>mandatory</td>
-<td>Human-readable string name of the Accredited Data Recipient to be presented to the end user during authorization</td>
+<td></td>
+<td>Human-readable string name of the Accredited Data Recipient to be presented to the end user during authorization.</td>
 </tr>
 <tr>
 <td>redirect_uris</td>
-<td>[string]</td>
+<td><a href="#common-field-types">[URIString]</a></td>
 <td>mandatory</td>
-<td>Array of redirection URI strings for use in redirect-based flows. If used, redirect_uris MUST match or be a subset of the redirect_uris as defined in the SSA</td>
+<td></td>
+<td>Array of redirection URI strings for use in redirect-based flows. If used, <em>redirect_uris</em> <strong>MUST</strong> match or be a subset of the <em>redirect_uris</em> as defined in the SSA.</td>
 </tr>
 <tr>
 <td>sector_identifier_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>optional</td>
-<td>URL string referencing the client sector identifier URI, used as an optional input to the Pairwise Identifier</td>
+<td></td>
+<td>URL string referencing the client sector identifier URI, used as an optional input to the Pairwise Identifier.</td>
 </tr>
 <tr>
 <td>logo_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>mandatory</td>
-<td>URL string that references a logo for the client. If present, the server SHOULD display this image to the end-user during approval</td>
+<td></td>
+<td>URL string that references a logo for the client. If present, the server <strong>SHOULD</strong> display this image to the end-user during approval.</td>
 </tr>
 <tr>
 <td>tos_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>optional</td>
-<td>URL string that points to a human-readable terms of service document for the Software Product</td>
+<td></td>
+<td>URL string that points to a human-readable terms of service document for the Software Product.</td>
 </tr>
 <tr>
 <td>policy_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>optional</td>
-<td>URL string that points to a human-readable policy document for the Software Product</td>
+<td></td>
+<td>URL string that points to a human-readable policy document for the Software Product.</td>
 </tr>
 <tr>
 <td>jwks_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>mandatory</td>
-<td>URL string referencing the client JSON Web Key (JWK) Set [RFC7517] document, which contains the client public keys</td>
+<td></td>
+<td>URL string referencing the client JSON Web Key (JWK) Set <strong><a href="#nref-RFC7517">[RFC7517]</a></strong> document, which contains the client public keys.</td>
 </tr>
 <tr>
 <td>revocation_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>optional</td>
-<td>URI string that references the location of the Software Product consent revocation endpoint</td>
+<td></td>
+<td>URI string that references the location of the Software Product consent revocation endpoint.</td>
 </tr>
 <tr>
 <td>recipient_base_uri</td>
-<td>string</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>optional</td>
-<td>Base URI for the Consumer Data Standard Data Recipient endpoints. This should be the base to provide reference to all other Data Recipient Endpoints</td>
+<td></td>
+<td>Base URI for the Consumer Data Standard Data Recipient endpoints. This should be the base to provide reference to all other Data Recipient Endpoints.</td>
 </tr>
 <tr>
 <td>token_endpoint_auth_method</td>
-<td>string</td>
+<td><a href="#common-field-types">Enum</a></td>
 <td>mandatory</td>
-<td>The requested authentication method for the token endpoint</td>
+<td></td>
+<td>The requested authentication method for the token endpoint.</td>
 </tr>
 <tr>
 <td>token_endpoint_auth_signing_alg</td>
-<td>string</td>
+<td><a href="#common-field-types">Enum</a></td>
 <td>mandatory</td>
-<td>The algorithm used for signing the JWT</td>
+<td></td>
+<td>The algorithm used for signing the JWT.</td>
 </tr>
 <tr>
 <td>grant_types</td>
-<td>[string]</td>
+<td>[<a href="#common-field-types">Enum</a>]</td>
 <td>mandatory</td>
-<td>Array of OAuth 2.0 grant type strings that the client can use at the token endpoint</td>
+<td></td>
+<td>Array of OAuth 2.0 grant type strings that the client can use at the token endpoint.</td>
 </tr>
 <tr>
 <td>response_types</td>
-<td>[string]</td>
+<td>[<a href="#common-field-types">Enum</a>]</td>
 <td>mandatory</td>
-<td>Array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint.</td>
+<td></td>
+<td>Array of the OAuth 2.0 <em>response_type</em> strings that the client can use at the authorization endpoint.<br><br><em>response_type</em> value <code>code</code> is required for Authorization Code Flow.<br><em>response_type</em> value <code>code id_token</code> is required for OIDC Hybrid Flow.</td>
 </tr>
 <tr>
 <td>application_type</td>
-<td>string</td>
+<td><a href="#common-field-types">Enum</a></td>
 <td>optional</td>
-<td>Kind of the application. The only supported application type will be <code>web</code></td>
+<td><code>web</code></td>
+<td>Kind of the application. The only supported application type will be <code>web</code>.</td>
 </tr>
 <tr>
 <td>id_token_signed_response_alg</td>
-<td>string</td>
-<td>optional</td>
-<td>Algorithm with which an id_token is to be signed</td>
+<td><a href="#common-field-types">Enum</a></td>
+<td>mandatory</td>
+<td></td>
+<td>Algorithm with which an id_token is to be signed.</td>
 </tr>
 <tr>
 <td>id_token_encrypted_response_alg</td>
-<td>string</td>
-<td>mandatory</td>
-<td>JWE <code>alg</code> algorithm with which an id_token is to be encrypted</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
+<td>conditional</td>
+<td></td>
+<td>JWE <em>alg</em> algorithm with which an id_token is to be encrypted.<br/><br/>Required only if OIDC Hybrid Flow (<em>response_type</em>: <code>code id_token</code>) is registered.</td>
 </tr>
 <tr>
 <td>id_token_encrypted_response_enc</td>
-<td>string</td>
-<td>mandatory</td>
-<td>JWE <code>enc</code> algorithm with which an id_token is to be encrypted</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
+<td>conditional</td>
+<td></td>
+<td>JWE <code>enc</code> algorithm with which an id_token is to be encrypted.<br/><br/>Required only if OIDC Hybrid Flow (<em>response_type</em>: <code>code id_token</code>) is registered.</td>
+</tr>
+<tr>
+<td>authorization_signed_response_alg</td>
+<td><a href="#common-field-types">Enum</a></td>
+<td>conditional</td>
+<td></td>
+<td>The JWS <em>alg</em> algorithm required for signing authorization responses. If this is specified, the response will be signed using JWS and the configured algorithm. The algorithm <code>none</code> is not allowed.<br><br>Required if <em>response_type</em> of <code>code</code> is registered by the client.</td>
+</tr>
+<tr>
+<td>authorization_encrypted_response_alg</td>
+<td><a href="#common-field-types">Enum</a></td>
+<td>conditional</td>
+<td></td>
+<td>The JWE <em>alg</em> algorithm required for encrypting authorization responses. If unspecified, the default is that no encryption is performed.<br><br>Required if <em>authorization_encrypted_response_enc</em> is included.</td>
+</tr>
+<tr>
+<td>authorization_encrypted_response_enc</td>
+<td><a href="#common-field-types">Enum</a></td>
+<td>optional</td>
+<td></td>
+<td>The JWE <em>enc</em> algorithm required for encrypting authorization responses. If <em>authorization_encrypted_response_alg</em> is specified, the default for this value is <code>A128CBC-HS256</code>.</td>
 </tr>
 <tr>
 <td>request_object_signing_alg</td>
-<td>string</td>
+<td><a href="#common-field-types">Enum</a></td>
 <td>mandatory</td>
-<td>Algorithm which the ADR expects to sign the request object if a request object will be part of the authorization request sent to the Data Holder</td>
+<td></td>
+<td>Algorithm which the ADR expects to sign the request object if a request object will be part of the authorization request sent to the Data Holder.</td>
 </tr>
 <tr>
 <td>software_statement</td>
 <td>string(JWT)</td>
 <td>mandatory</td>
-<td>The Software Statement Assertion, as defined in CDR standards</td>
+<td></td>
+<td>The Software Statement Assertion, as defined in CDR standards.</td>
 </tr>
 <tr>
 <td>software_id</td>
 <td>string</td>
 <td>mandatory</td>
-<td>String representing a unique identifier assigned by the Register and used by registration endpoints to identify the software product to be dynamically registered. </br></br>The &quot;software_id&quot; will remain the same for the lifetime of the product, across multiple updates and versions</td>
+<td></td>
+<td>String representing a unique identifier assigned by the Register and used by registration endpoints to identify the software product to be dynamically registered. <br><br>The <em>software_id</em> will remain the same for the lifetime of the product, across multiple updates and versions.</td>
 </tr>
 <tr>
 <td>software_roles</td>
-<td>string</td>
+<td><a href="#common-field-types">Enum</a></td>
 <td>optional</td>
-<td>String containing a role of the software in the CDR Regime. Initially the only value used with be <code>data-recipient-software-product</code></td>
+<td><code>data-recipient-software-product</code></td>
+<td>String containing a role of the software in the CDR Regime. Initially the only value used will be <code>data-recipient-software-product</code>.</td>
 </tr>
 <tr>
 <td>scope</td>
 <td>string</td>
 <td>mandatory</td>
+<td></td>
 <td>String containing a space-separated list of scope values that the client can use when requesting access tokens.</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values'>Enumerated Values</h4>
+
+<h4 id="cdr-dynamic-client-registration-api_registrationproperties_enumerated-values-main">Enumerated Values</h4>
+
 <table><thead>
 <tr>
 <th>Property</th>
@@ -903,6 +1021,26 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td>ES256</td>
 </tr>
 <tr>
+<td>grant_types</td>
+<td>client_credentials</td>
+</tr>
+<tr>
+<td>grant_types</td>
+<td>authorization_code</td>
+</tr>
+<tr>
+<td>grant_types</td>
+<td>refresh_token</td>
+</tr>
+<tr>
+<td>response_types</td>
+<td>code</td>
+</tr>
+<tr>
+<td>response_types</td>
+<td>code id_token</td>
+</tr>
+<tr>
 <td>application_type</td>
 <td>web</td>
 </tr>
@@ -915,6 +1053,30 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td>ES256</td>
 </tr>
 <tr>
+<td>authorization_signed_response_alg</td>
+<td>PS256</td>
+</tr>
+<tr>
+<td>authorization_signed_response_alg</td>
+<td>ES256</td>
+</tr>
+<tr>
+<td>authorization_encrypted_response_alg</td>
+<td>RSA-OAEP</td>
+</tr>
+<tr>
+<td>authorization_encrypted_response_alg</td>
+<td>RSA-OAEP-256</td>
+</tr>
+<tr>
+<td>authorization_encrypted_response_enc</td>
+<td>A256GCM</td>
+</tr>
+<tr>
+<td>authorization_encrypted_response_enc</td>
+<td>A128CBC-HS256</td>
+</tr>
+<tr>
 <td>request_object_signing_alg</td>
 <td>PS256</td>
 </tr>
@@ -922,57 +1084,72 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td>request_object_signing_alg</td>
 <td>ES256</td>
 </tr>
+<tr>
+<td>software_roles</td>
+<td>data-recipient-software-product</td>
+</tr>
 </tbody></table>
 
-<h3 class="schema-toc" id="tocSclientregistration">ClientRegistration</h3>
+<h3 class="schema-toc" id="cdr-dynamic-client-registration-api_schemas_tocSclientregistration">ClientRegistration</h3>
 
-<p><a id="schemacdr-dynamic-client-registration-apiclientregistration"></a></p>
+<p id="tocSclientregistration" class="orig-anchor"></p>
+
+<p>
+  <a id="cdr-dynamic-client-registration-api_schema-base_clientregistration"></a>
+  <a class="schema-anchor" id="schemacdr-dynamic-client-registration-apiclientregistration"></a>
+</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CDR Software Product ID"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571808167</span><span class="p">,</span><span class="w">
   </span><span class="s2">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">2147483646</span><span class="p">,</span><span class="w">
   </span><span class="s2">"jti"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37747cd1c10545699f754adf28b73e31"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://secure.api.dataholder.com/issuer"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35a5a70b-5b8d-41f4-9cbd-96cfbc15c58a"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571808167</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"aud"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mtls.dh.example.com/issuer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2cfefa98-7d4a-4bcb-95da-47063b84d410"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_id_issued_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574398833</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Software"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"client_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A mock software product"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"344F0E809-BDBE-4F8E-BD30-5E6C3CB78D7B"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"client_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"legal_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"legal_entity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Pty Ltd."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3B0B0A7B-3E7B-4A2C-9497-E357A71D07C8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"org_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mock Company Brand"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"redirect_uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"https://www.mockcompany.com.au/redirects/redirect2"</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"https://adr.example.com/redirects/redirect2"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/sector_identifier.json"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/logos/logo1.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/tos.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/policy.html"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/jwks"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au/revocation"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.mockcompany.com.au"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sector_identifier_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/sector_identifier.json"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logo_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/logos/logo1.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tos_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/tos.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"policy_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/policy.html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"jwks_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/jwks"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"revocation_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com/revocation"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient_base_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://adr.example.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_key_jwt"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_endpoint_auth_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"grant_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"client_credentials"</span><span class="w">
+    </span><span class="s2">"client_credentials"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refresh_token"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"response_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"code id_token"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"application_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_token_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A256GCM"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_signed_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA-OAEP"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authorization_encrypted_response_enc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A128CBC-HS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"request_object_signing_alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PS256"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_statement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"740C368F-ECF9-4D29-A2EA-0514A66B0CDE"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"software_roles"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data-recipient-software-product"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"openid profile bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="cdr-dynamic-client-registration-api_clientregistration_properties">Properties</h3>
 
-</span></code></pre><h3 id='properties-3'>Properties</h3>
 <p><em>allOf</em></p>
 
 <table><thead>
@@ -980,6 +1157,7 @@ To perform this operation, you must be authenticated and authorised with the fol
 <th>Name</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -987,37 +1165,43 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td><em>anonymous</em></td>
 <td>object</td>
 <td>mandatory</td>
+<td></td>
 <td>none</td>
 </tr>
 <tr>
-<td>» iss</td>
+<td>» iss</td>
 <td>string</td>
 <td>mandatory</td>
-<td>Contains the identifier for the ADR Software Product (SoftwareProductId) as defined in the CDR Register</td>
+<td></td>
+<td>Contains the identifier for the ADR Software Product (SoftwareProductId) as defined in the CDR Register.</td>
 </tr>
 <tr>
-<td>» iat</td>
-<td>integer(int32)</td>
+<td>» iat</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
 <td>mandatory</td>
-<td>The time at which the request was issued by the Data Recipient  expressed as seconds since 1970-01-01T00:00:00Z as measured in UTC</td>
+<td></td>
+<td>The time at which the request was issued by the Data Recipient expressed as seconds since 1970-01-01T00:00:00Z as measured in UTC.</td>
 </tr>
 <tr>
-<td>» exp</td>
-<td>integer(int32)</td>
+<td>» exp</td>
+<td><a href="#common-field-types">ExternalRef</a></td>
 <td>mandatory</td>
-<td>The time at which the request expires expressed as seconds since 1970-01-01T00:00:00Z as measured in UTC</td>
+<td></td>
+<td>The time at which the request expires expressed as seconds since 1970-01-01T00:00:00Z as measured in UTC.</td>
 </tr>
 <tr>
-<td>» jti</td>
+<td>» jti</td>
 <td>string</td>
 <td>mandatory</td>
-<td>Unique identifier for the JWT, used to prevent replay of the token</td>
+<td></td>
+<td>Unique identifier for the JWT, used to prevent replay of the token.</td>
 </tr>
 <tr>
-<td>» aud</td>
-<td>string</td>
+<td>» aud</td>
+<td><a href="#common-field-types">URIString</a></td>
 <td>mandatory</td>
-<td>&#39;Contains the Data Holder issuer value as described in the OIDC Discovery Document</td>
+<td></td>
+<td>Contains the Data Holder issuer value as described in the OIDC Discovery Document.</td>
 </tr>
 </tbody></table>
 
@@ -1028,6 +1212,7 @@ To perform this operation, you must be authenticated and authorised with the fol
 <th>Name</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -1035,41 +1220,53 @@ To perform this operation, you must be authenticated and authorised with the fol
 <td><em>anonymous</em></td>
 <td><a href="#schemacdr-dynamic-client-registration-apiregistrationproperties">RegistrationProperties</a></td>
 <td>mandatory</td>
+<td></td>
 <td>none</td>
 </tr>
 </tbody></table>
 
-<h3 class="schema-toc" id="tocSregistrationerror">RegistrationError</h3>
+<h3 class="schema-toc" id="cdr-dynamic-client-registration-api_schemas_tocSregistrationerror">RegistrationError</h3>
 
-<p><a id="schemacdr-dynamic-client-registration-apiregistrationerror"></a></p>
+<p id="tocSregistrationerror" class="orig-anchor"></p>
+
+<p>
+  <a id="cdr-dynamic-client-registration-api_schema-base_registrationerror"></a>
+  <a class="schema-anchor" id="schemacdr-dynamic-client-registration-apiregistrationerror"></a>
+</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_redirect_uri"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="cdr-dynamic-client-registration-api_registrationerror_properties">Properties</h3>
 
-</span></code></pre><h3 id='properties-4'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
 <th>Type</th>
 <th>Required</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>error</td>
-<td>string</td>
+<td><a href="#common-field-types">Enum</a></td>
 <td>mandatory</td>
-<td>Predefined error code as described in <a href="https://openid.net/specs/openid-connect-registration-1_0.html">section 3.3 OIDC Dynamic Client Registration</a></td>
+<td></td>
+<td>Predefined error code as described in <a href="https://openid.net/specs/openid-connect-registration-1_0.html">section 3.3 OIDC Dynamic Client Registration</a>.</td>
 </tr>
 <tr>
 <td>error_description</td>
-<td>string</td>
+<td><a href="#common-field-types">ASCIIString</a></td>
 <td>optional</td>
+<td></td>
 <td>Additional text description of the error for debugging.</td>
 </tr>
 </tbody></table>
-<h4 id='enumerated-values-2'>Enumerated Values</h4>
+
+<h4 id="cdr-dynamic-client-registration-api_registrationerror_enumerated-values-main">Enumerated Values</h4>
+
 <table><thead>
 <tr>
 <th>Property</th>
